@@ -1,16 +1,26 @@
-
+# QUANT SCIENCE UNIVERSITY
+# Goal: Get you started making progress with backtesting
+# ****
 
 from zipline.api import order_target, record, symbol
 from zipline import run_algorithm
 from zipline.data import bundles
 
 import pandas as pd
-import pytz
+import matplotlib.pyplot as plt
 import os
 
+# ENVIRONMENT INSTRUCTIONS WITH CONDA:
+#   conda create -n zipline_backtesting
+#   conda activate zipline_backtesting
+#   conda install python
+#   pip install zipline-reloaded numpy==1.26.4 matplotlib
+
+
 # STEP 1: INGEST A DATA BUNDLE
-#  THIS IS FOR FREE DATA UP TO 2018
-#  https://docs.data.nasdaq.com/v1.0/docs/getting-started
+#  ONLY NEED TO RUN THIS ONCE.
+#  THIS BUILDS THE QUANDL FREE DATA UP TO 2018. 
+#  Instructions: https://docs.data.nasdaq.com/v1.0/docs/getting-started
 
 os.environ["QUANDL_API_KEY"] = "YOUR_API_KEY"
 bundle = "quandl"
@@ -58,6 +68,26 @@ result = run_algorithm(
     start=start, 
     end=end, 
     initialize=initialize,
-    handle_data=handle_data, capital_base=capital_base,
+    handle_data=handle_data, 
+    capital_base=capital_base,
     bundle='quandl'
 )
+
+# STEP 4: PLOT THE PERFORMANCE
+
+# Plot the performance
+result.portfolio_value.plot()
+plt.xlabel('Date')
+plt.ylabel('Portfolio Value')
+plt.title('Portfolio Value Over Time')
+plt.show()
+
+
+# Conclusions ----
+# You can do this!
+# There's a lot more to learn:
+# - How to backtest more complex trading strategies
+# - How to measure performance
+# - How to include benchmarks
+# - How to use with portfolio-based strategies including rebalancing
+# - And more!
