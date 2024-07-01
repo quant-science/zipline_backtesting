@@ -2,25 +2,26 @@
 # Goal: Get you started making progress with backtesting
 # ****
 
+# ENVIRONMENT INSTRUCTIONS WITH CONDA:
+#   conda create -n zipline_backtesting
+#   conda activate zipline_backtesting
+#   conda install python
+#   pip install zipline-reloaded numpy==1.26.4 plotly nbformat
+
+# IMPORTS
 from zipline.api import order_target, record, symbol
 from zipline import run_algorithm
 from zipline.data import bundles
 
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 import os
-
-# ENVIRONMENT INSTRUCTIONS WITH CONDA:
-#   conda create -n zipline_backtesting
-#   conda activate zipline_backtesting
-#   conda install python
-#   pip install zipline-reloaded numpy==1.26.4 matplotlib
 
 
 # STEP 1: INGEST A DATA BUNDLE
-#  ONLY NEED TO RUN THIS ONCE.
-#  THIS BUILDS THE QUANDL FREE DATA UP TO 2018. 
-#  Instructions: https://docs.data.nasdaq.com/v1.0/docs/getting-started
+#  * ONLY NEED TO RUN THIS ONCE.
+#  * THIS BUILDS THE QUANDL FREE DATA UP TO 2018. 
+#  * Instructions: https://docs.data.nasdaq.com/v1.0/docs/getting-started
 
 os.environ["QUANDL_API_KEY"] = "YOUR_API_KEY"
 bundle = "quandl"
@@ -73,15 +74,16 @@ result = run_algorithm(
     bundle='quandl'
 )
 
+result
+
 # STEP 4: PLOT THE PERFORMANCE
 
 # Plot the performance
-result.portfolio_value.plot()
-plt.xlabel('Date')
-plt.ylabel('Portfolio Value')
-plt.title('Portfolio Value Over Time')
-plt.show()
-
+px.line(
+    result.portfolio_value, 
+    title = 'Portfolio Value Over Time',
+    template='simple_white'
+)
 
 # Conclusions ----
 # You can do this!
