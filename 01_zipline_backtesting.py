@@ -41,8 +41,8 @@ def initialize(context):
     context.asset = symbol('AAPL')
     
     # Set the historical windows
-    context.short_window = 10
-    context.long_window = 30
+    context.short_window = 7
+    context.long_window = 20
 
 def handle_data(context, data):
     # Get historical data
