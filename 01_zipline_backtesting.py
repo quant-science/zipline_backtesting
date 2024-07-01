@@ -100,3 +100,14 @@ px.line(
 # - How to include benchmarks
 # - How to use with portfolio-based strategies including rebalancing
 # - And more!
+
+# BONUS: pyfolio-reloaded
+
+# pip install pyfolio-reloaded
+
+import pyfolio as pf
+
+returns, positions, transactions = pf.utils.extract_rets_pos_txn_from_zipline(result)
+
+
+pf.create_full_tear_sheet(returns, positions, transactions)
