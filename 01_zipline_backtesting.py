@@ -17,6 +17,13 @@ import pandas as pd
 import plotly.express as px
 import os
 
+import warnings
+
+# Suppress specific FutureWarning messages
+warnings.filterwarnings("ignore", category=FutureWarning, message=".*fillna.*")
+warnings.filterwarnings("ignore", category=FutureWarning, message=".*Series.__setitem__.*")
+
+
 
 # STEP 1: INGEST A DATA BUNDLE
 #  * ONLY NEED TO RUN THIS ONCE.
